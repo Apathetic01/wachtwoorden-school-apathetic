@@ -67,14 +67,40 @@ def generate_password(length):
 
 def program_1():
 
-    while True:
-        user_password = input("Enter a password: ")
-        if is_valid_password(user_password):
-            print("Welcome.")
-            break
+   import string
+
+def is_valid_password(password):
+    valid_punctuation = string.punctuation + "@#"
+    return (len(password) >= 12 and
+            any(c.isupper() for c in password) and
+            any(c.isdigit() for c in password) and
+            any(c in valid_punctuation for c in password))
+
+def check_passwords(passwords):
+    for i, password in enumerate(passwords, 1):
+        if is_valid_password(password):
+            print(f"Password {i}: '{password}' - Valid")
         else:
-            print("Password does not adhere to complexity rules.")
-            print("Please make sure the password has 12 characters, at least one uppercase letter, one number, and one punctuation mark.")
+            print(f"Password {i}: '{password}' - Invalid")
+
+if __name__ == "__main__":
+    password_list = [
+        "AbC",
+        "Pssw0rdLongerThanCharacters12",
+        "AllsffesfLowercasepass3",
+        "StrongPssW22",
+        "NoUpp@er2",
+        "NfesfsefsefeoNumbe3r",
+        "Pssw0fsfrdL.ongerThanCharacters4",
+        "NoPun34ctuationPass",
+        "NoNu4mber",
+        "Short3Pwe",
+        "GoodfsfsdPs6sword",
+        "Valid#0Pss",
+        "Secure,Pw8d",
+        "Safe7Pwd"
+    ]
+    check_passwords(password_list)
 
 def program_2():
     while True:
