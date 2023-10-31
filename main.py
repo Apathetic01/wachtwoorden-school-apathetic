@@ -1,11 +1,41 @@
 import string
 import random
 
+import string
+
 def is_valid_password(password):
-    return (len(password) == 12 and
+    valid_punctuation = string.punctuation + "@#"
+    return (len(password) >= 12 and
             any(c.isupper() for c in password) and
             any(c.isdigit() for c in password) and
-            any(c in string.punctuation for c in password))
+            any(c in valid_punctuation for c in password))
+
+def check_passwords(passwords):
+    for i, password in enumerate(passwords, 1):
+        if is_valid_password(password):
+            print(f"Password {i}: '{password}' - Valid")
+        else:
+            print(f"Password {i}: '{password}' - Invalid")
+
+if __name__ == "__main__":
+    password_list = [
+        "AbC",
+        "Pssw0rdLongerThanCharacters12",
+        "AllsffesfLowercasepass3",
+        "StrongdfgdfgdfgdgdfgdfgdPssW22",
+        "NoUppgdfgdgdfgdgdg@fer2",
+        "NfesfsefsefeoNumbe3r",
+        "Pssw0fgdsfrdL.ongerThanCharacters4",
+        "NoPunffdgdgdfg34ctuationPass",
+        "NoNu4mber",
+        "Short3Pwe",
+        "GoodfsfsdPs6sword",
+        "Validscbshcbshbdhvbsdvbsd.fl#0Pss",
+        "Secure,Pw8d",
+        "Safgfsdnvgjndrjvgfnfrndfklvn;dfklnvl;dfkvnd;fkl.e7Pwd"
+    ]
+    check_passwords(password_list)
+
 
 def generate_password(length):
     if length < 12:
