@@ -62,6 +62,17 @@ def generate_password(length):
 
     return shuffled_password
 
+def program_1():
+
+    while True:
+        user_password = input("Enter a password: ")
+        if is_valid_password(user_password):
+            print("\nWelcome.")
+            break
+        else:
+            print("Password does not adhere to complexity rules.")
+            print("Please make sure the password has 12 characters, at least one uppercase letter, one number, and one punctuation mark.")
+
 def program_2():
     while True:
         try:
