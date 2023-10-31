@@ -1,24 +1,12 @@
 import string
 import random
 
-import string
-
 def is_valid_password(password):
     valid_punctuation = string.punctuation + "@#"
     return (len(password) >= 12 and
             any(c.isupper() for c in password) and
             any(c.isdigit() for c in password) and
             any(c in valid_punctuation for c in password))
-
-
-
-
-
-def program_1():
-
-   import string
-
-
 
 def check_passwords(passwords):
     for i, password in enumerate(passwords, 1):
@@ -45,6 +33,34 @@ if __name__ == "__main__":
         "Safe7Pwd"
     ]
     check_passwords(password_list)
+
+def generate_password(length):
+    if length < 12:
+        return "Password length should be at least 12 characters."
+
+    # Define character sets for each category
+    lowercase_letters = string.ascii_lowercase
+    uppercase_letters = string.ascii_uppercase
+    digits = string.digits
+    symbols = string.punctuation
+
+    # Ensure at least one character from each category
+    password = random.choice(lowercase_letters)
+    password += random.choice(uppercase_letters)
+    password += random.choice(digits)
+    password += random.choice(symbols)
+
+    # Generate the rest of the password
+    remaining_length = length - 4
+    all_characters = lowercase_letters + uppercase_letters + digits
+    password += ''.join(random.choice(all_characters) for _ in range(remaining_length))
+
+    # Shuffle the characters in the password
+    password_list = list(password)
+    random.shuffle(password_list)
+    shuffled_password = ''.join(password_list)
+
+    return shuffled_password
 
 def program_2():
     while True:
